@@ -16,7 +16,7 @@
 <body>
 	<div class="container-fluid p-0 m-0">
 		<%@ include file="navbar.jsp"%><br>
-		<h1>All notes:</h1>
+		<h1>Your notes :</h1>
 
 		<%
 		Session s = Factory.getFactory().openSession();
@@ -24,11 +24,12 @@
 		List<Note> l = q.list();
 		for (Note note : l) {
 		%>
-		<div class="card mt-3">
+		<div class="card m-5 p-2">
 			<img class="card-img-top pt-4 pl-4" style="max-width: 50px" src="images/pencil.png" alt="Card image cap">
 			<div class="card-body px-4">
 				<h5 class="card-title">Title: <%=note.getTitle()%></h5>
 				<p class="card-text"><%= note.getContent() %></p>
+				<p style="color:#616161; font-size:10px">Last updated: <%= note.getDateAdded() %></p>
 				<a href="DeleteServlet?note_id=<%= note.getId() %>" class="btn btn-danger">Delete</a>
 				<a href="edit.jsp?note_id=<%=note.getId() %>" class="btn btn-primary">Edit</a>
 			</div>
